@@ -58,11 +58,16 @@ def func_4():
                    f'оно появилось в массиве {v[key]} раз(а)'
             break
 
+def func_5():
+    v = max(array, key = array.count)
+    return f'Чаще всего встречается число {v}, ' \
+                   f'оно появилось в массиве {array.count(v)} раз(а)'
 
 print(func_1())
 print(func_2())
 print(func_3())
 print(func_4())
+print(func_5())
 
 print("func_1()")
 print(timeit.timeit("func_1()", setup="from __main__ import func_1", number=100000))
@@ -72,22 +77,25 @@ print("func_3")
 print(timeit.timeit("func_3", setup="from __main__ import func_3", number=100000))
 print("func_4")
 print(timeit.timeit("func_4", setup="from __main__ import func_4", number=100000))
-
+print("func_5")
+print(timeit.timeit("func_5", setup="from __main__ import func_5", number=100000))
 
 """
 Замеры:
 func_1()
-2.523003589
+2.545556558
 func_2
-0.00409209300000013
+0.003996316000000277
 func_3
-0.00404541699999994
+0.003914031999999956
 func_4
-0.004136845000000111
+0.0039039270000000847
+func_5
+0.0039635950000000975
 
 Process finished with exit code 0
 
-Нестабильно, но func_3 и func_2 практически рядом. Func_3 немного быстрее. 
+Нестабильно, но func_3 и func_2 практически рядом. Они быстрее чем func_5
 
 
 """
