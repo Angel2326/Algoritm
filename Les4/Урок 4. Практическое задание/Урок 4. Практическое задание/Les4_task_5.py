@@ -16,7 +16,7 @@
 import timeit
 
 
-def simple(i2):  # итого :  O(N^2*LogN+N*LogN)
+def simple(i2):  # итого :  O(N^2)
     """Без использования «Решета Эратосфена»"""
     count = 1  # O(1)
     n = 2  # O(1)
@@ -27,12 +27,12 @@ def simple(i2):  # итого :  O(N^2*LogN+N*LogN)
             if n % t == 0 and t != 1 and t != n:  # O(1)
                 is_simple = False  # O(1)
                 break  # O(1)
-            t += 1  # # O(log(N))
+            t += 1  # # O(1)
         if is_simple:  # O(1)
             if count == i2:  # O(1)
                 break  # O(1)
-            count += 1  # # O(log(N))
-        n += 1  # # O(log(N))
+            count += 1  # # O(1)
+        n += 1  # # O(1)
     return n  # O(1)
 
 
@@ -70,7 +70,7 @@ print(timeit.timeit("resheto_eratosphena(i)", setup="from __main__ import reshet
 С увеличением i на порядок наблюдаем все большее превосходство алгоритма "Решето эратосфена". А эффект этот
 получается за счет того, что алгоритм "Решето эратосфена" работает в циклах while только c непростыми числами.
 Обнуляются из списка все числа от 2p (где p - простое число) до n, делящиеся на p (то есть, числа 2p, 3p, 4p, …). 
-Поэтому сложность алгоритма "Решето эратосфена" = O(N*LogN), у simple = O(N^2*LogN+N*LogN)
+Поэтому сложность алгоритма "Решето эратосфена" = O(N*LogN), у simple = O(N^2)
 
 i=10
 simple(i) = 0.0074277820000006045
