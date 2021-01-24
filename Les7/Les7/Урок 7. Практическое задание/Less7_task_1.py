@@ -32,8 +32,8 @@ orig_list = [random.randint(-100, 100) for _ in range(10)]
 
 def bubble_sort2(lst_obj):
     n = 1
+    count = 0
     while n < len(lst_obj):
-        count = 0
         for i in range(len(lst_obj) - n):
             if lst_obj[i] < lst_obj[i + 1]:
                 lst_obj[i], lst_obj[i + 1] = lst_obj[i + 1], lst_obj[i]
@@ -53,67 +53,48 @@ print(bubble_sort2(orig_list[:]))
 
 print('Замеры По возростанию')
 # замеры 10
-print(timeit.timeit("bubble_sort(orig_list)", \
+print(timeit.timeit("bubble_sort(orig_list[:])", \
                     setup="from __main__ import bubble_sort, orig_list", number=1))
 orig_list = [random.randint(-100, 100) for _ in range(100)]
 #
 # # замеры 100
-print(timeit.timeit("bubble_sort(orig_list)", \
+print(timeit.timeit("bubble_sort(orig_list[:])", \
                     setup="from __main__ import bubble_sort, orig_list", number=1))
 #
-orig_list = [random.randint(-100, 100) for _ in range(10000)]
+orig_list = [random.randint(-100, 100) for _ in range(1000)]
 #
 # # замеры 10000
-print(timeit.timeit("bubble_sort(orig_list)", \
+print(timeit.timeit("bubble_sort(orig_list[:])", \
                     setup="from __main__ import bubble_sort, orig_list", number=1))
 
 orig_list = [random.randint(-100, 100) for _ in range(10)]
 print('Замеры по убыванию')
 # замеры 10
-print(timeit.timeit("bubble_sort2(orig_list)", \
+print(timeit.timeit("bubble_sort2(orig_list[:])", \
                     setup="from __main__ import bubble_sort2, orig_list", number=1))
 orig_list = [random.randint(-100, 100) for _ in range(100)]
 # # замеры 100
-print(timeit.timeit("bubble_sort2(orig_list)", \
+print(timeit.timeit("bubble_sort2(orig_list[:])", \
                     setup="from __main__ import bubble_sort2, orig_list", number=1))
-orig_list = [random.randint(-100, 100) for _ in range(10000)]
+orig_list = [random.randint(-100, 100) for _ in range(1000)]
 # # замеры 10000
-print(timeit.timeit("bubble_sort2(orig_list)", \
+print(timeit.timeit("bubble_sort2(orig_list[:])", \
                     setup="from __main__ import bubble_sort2, orig_list", number=1))
 
 """"
-[-19, -79, 72, -47, 85, -58, -53, -11, 75, 18]
+[20, 14, -7, -65, -5, -25, 13, -11, -64, 98]
 По возростанию
-[-79, -58, -53, -47, -19, -11, 18, 72, 75, 85]
+[-65, -64, -25, -11, -7, -5, 13, 14, 20, 98]
 По убыванию
-[-19, -79, 72, -47, 85, -58, -53, -11, 75, 18]
+[20, 14, -7, -65, -5, -25, 13, -11, -64, 98]
 Замеры По возростанию
-4.6195000000005815e-05
-0.003186016
-33.062523098
+7.025500000000517e-05
+0.004712377999999989
+0.500669347
 Замеры по убыванию
-2.8389999997102677e-05
-0.0001616830000017444
-0.02972315699999939
+0.000103457000000029
+0.0038996340000000407
+0.505647347
 
-Оптимизация дала результаты и теперь гораздо быстрее работает 0,0297 сек  против 33,06 сек
-========================================
-
-[52, -28, 18, -45, 21, -60, -26, 10, -95, 46]
-По возростанию
-[-95, -60, -45, -28, -26, 10, 18, 21, 46, 52]
-По убыванию
-[52, -28, 18, -45, 21, -60, -26, 10, -95, 46]
-Замеры По возростанию
-4.8118999999999246e-05
-0.003919361999999996
-17.026859544 (здесь предварительно отсортировал по возростанию)
-Замеры по убыванию
-3.6089999998267785e-05
-0.00015879600000090477
-0.01811279700000057 (здесь предварительно отсортировал по убыванию)
-
-
-
-
+Эффекта от оптимизации нет
 """
